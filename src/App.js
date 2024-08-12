@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import GameArea from "./Components/GameArea";
+import { ChakraProvider} from "@chakra-ui/react";
+import Winning from "./Components/Winning";
+import Losing from "./Components/Losing";
+import {HashRouter, Route, Routes } from "react-router-dom";
+import Home from "./Components/Home";
 
-function App() {
+export default function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{backgroundImage : `url(https://images.pexels.com/photos/952670/pexels-photo-952670.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)`}} className={`min-h-screen flex flex-1 justify-center items-center`}>
+      <ChakraProvider>
+        <HashRouter> 
+          {/* just to make it easier to navigate between all the pages without playing the Game (for tester) */}
+          <Routes>
+            <Route index element={<Home />} />
+            <Route path="game" element={<GameArea />} />
+            <Route path="playing" element={<Winning />} />
+            <Route path="winning" element={<Winning />} />
+            <Route path="losing" element={<Losing />} />
+          </Routes>
+        </HashRouter>
+      </ChakraProvider>
     </div>
   );
 }
-
-export default App;
